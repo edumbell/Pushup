@@ -1,0 +1,62 @@
+﻿@using Pushup.Models
+@model DataAccount
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach (var v in Model.Variables)
+{
+    var displayRaw = v.RecentRawData.OrderByDescending(x => x.Key).Take(3);
+    var displayHistory = v.History.OrderByDescending(x => x.Key).Take(v.SummaryDisplayCount);
+    <div class="row">
+        <div class="col-12">
+            <h3>@v.Name</h3>
+        </div>
+        <div class="col-sm-6">
+            @foreach (var r in displayRaw)
+            {
+                <div class="time">
+                    @r.Key.ToShortTimeString()
+                </div>
+                <span class="value">
+                    @r.Value.ToString("#.##")
+                </span>
+                <br/>
+            }
+
+        </div>
+
+        <div class="col-sm-6">
+            <table class="table">
+                <tr>
+                    <th>time</th>
+                    <th>min</th>
+                    <th>median</th>
+                    <th>max</th>
+                </tr>
+                @foreach (var r in displayHistory)
+                {
+                    <tr>
+                        <td>
+                            @r.Key.ToShortTimeString()
+                        </td>
+
+                        <td class="text-right">
+                            @r.Value.Min.ToString("#.##")
+                        </td>
+                        <th class="text-right">
+                            @r.Value.Median.ToString("#.##")
+                        </th>
+                        <td class="text-right">
+                            @r.Value.Max.ToString("#.##")
+                        </td>
+                    </tr>
+                }
+
+
+            </table>
+        </div>
+    </div>
+    <hr />
+}
+
