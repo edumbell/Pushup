@@ -12,16 +12,19 @@ namespace Pushup
 			config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{slug}",
-                defaults: new { id = RouteParameter.Optional, controller = "DefaultApi" }
-            );
-
-            config.Routes.MapHttpRoute(
                 name: "ActionApi",
                 routeTemplate: "api/{slug}/{action}",
-                defaults: new {  controller = "DefaultApi" }
+                defaults: new { controller = "DefaultApi", slug = RouteParameter.Optional }
             );
+
+
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{action}/{slug}",
+            //    defaults: new { id = RouteParameter.Optional, controller = "DefaultApi" }
+            //);
+
+            
             
         }
     }
