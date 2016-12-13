@@ -19,6 +19,8 @@ namespace Pushup
             //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             //);
 
+            routes.MapMvcAttributeRoutes();
+
             routes.MapRoute(
     name: "Default",
     url: "{controller}/{action}/{slug}",

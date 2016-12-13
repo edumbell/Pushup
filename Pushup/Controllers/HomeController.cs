@@ -9,6 +9,7 @@ namespace Pushup.Controllers
 {
     public class HomeController : Controller
     {
+        [Route("view/{slug}")]
         public ActionResult Index(string slug)
         {
             var acct = new DataPointManager().GetOrCreateAccount(slug);
