@@ -32,7 +32,8 @@ namespace Pushup
         {
             if (FirstUrl == null)
             {
-                FirstUrl = HttpContext.Current.Request.Url.ToString();
+                if (FirstUrl == null)
+                    FirstUrl = HttpContext.Current.Request.Url.ToString();
                 KeepAlive();
             }
         }
@@ -40,11 +41,18 @@ namespace Pushup
         public void KeepAlive()
         {
             var client = new WebClient();
-            var content = client.DownloadString(FirstUrl);
+            try
+            {
+                var content = client.DownloadString(FirstUrl);
+            }
+            catch(Exception ex)
+            {
+                FirstUrl = null;
+            }
             var timer = new System.Threading.Timer(x =>
             {
                 this.KeepAlive();
-            }, null, new TimeSpan(0,10,0), Timeout.InfiniteTimeSpan);
+            }, null, new TimeSpan(0,10,10), Timeout.InfiniteTimeSpan);
         }
     }
 }
