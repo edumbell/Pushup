@@ -44,11 +44,12 @@ input[type="checkbox"].input-validation-error {
 
 
 .time {
-    width:100px;
+    width:70px;
     float:left;
 }
 .value {
     float:left;
-    width:100px;
+    width:70px;
     text-align:right;
+    overflow-x:visible;
 }

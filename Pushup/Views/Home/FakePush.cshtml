@@ -36,8 +36,8 @@
         var data = JSON.stringify(  [{ name: name, value: value }] );
         //var data =  { data: [{ name: name, value: value }] };
 
-        //var url = '/api/' + slug + '/push';
-        var url = '/api/defaultapi/push/' + slug ;
+        var url = '/api/' + slug + '/push';
+        //var url = '/api/defaultapi/push/' + slug ;
         $.ajax({
             contentType: "application/json; charset=utf-8",
             type: 'post',
